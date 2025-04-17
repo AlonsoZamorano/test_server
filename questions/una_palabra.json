@@ -1,0 +1,11 @@
+[
+  {
+    "question": "Una palabra que empiece con la letra A",
+    "type": "text"
+  },
+  {
+    "question": "En que piensas al ver esta imagen",
+    "type": "image",
+    "image": "1.png"
+  }
+]

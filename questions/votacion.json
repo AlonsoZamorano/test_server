@@ -1,0 +1,26 @@
+[
+  {
+    "question": "¿Quien tiene la peor maña?",
+    "type": "players"
+  },
+  {
+    "question": "¿Quien es el más gracioso?",
+    "type": "players"
+  },
+  {
+    "question": "¿Cual es la mejor mascota?",
+    "type": "options",
+    "options": [
+      "Perro",
+      "Gato",
+      "Ornitorrinco"
+    ]
+  },
+  {
+    "question": "¿Quien es el más bobo?",
+    "type": "players"
+  },
+  {
+    
+  }
+]
