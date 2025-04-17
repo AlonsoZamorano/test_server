@@ -113,8 +113,10 @@ app.post('/players', (req, res) => {
     question.options = players.map(player => player.name);
   }
 
+  question.category = category;
+
   console.log(`🚀 Enviando pregunta de tipo "${category}":`, question);
-  io.emit(category, question);
+  io.emit("question", question);
 });
 
 
