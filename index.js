@@ -50,21 +50,6 @@ app.get('/questions', (req, res) => {
   res.json(allQuestions);
 });
 
-app.post('/players', (req, res) => {
-  const { name } = req.body;
-  if (!name) return res.status(400).json({ error: 'Name is required' });
-
-  if (players.find(p => p.name === name)) {
-    return res.status(409).json({ error: 'Player already exists' });
-  }
-
-  const player = { id: Date.now(), name, score: 0 };
-  players.push(player);
-
-  io.emit('player_joined', player);
-  res.status(200).json(player);
-});
-
 app.get('/players', (req, res) => {
   res.json(players);
 });
@@ -147,11 +132,25 @@ app.post('/category', (req, res) => {
   const randomIndex = Math.floor(Math.random() * questions.length);
   const question = questions[randomIndex];
 
+  question.category = category;
+
   console.log('📝 Pregunta seleccionada:', question);
   console.log('📂 Categoría:', category);
 
-  io.emit(category, question);
+  io.emit("question", question);
   res.status(200).json(question);
+});
+
+app.post('/answer', (req, res) => {
+  const { playerId, answer } = req.body;
+  if (!playerId || answer === undefined) return res.status(400).json({ error: 'Player ID and answer are required' });
+
+  const player = players.find(p => p.id === playerId);
+  if (!player) return res.status(404).json({ error: 'Player not found' });
+
+  player.score += answer ? 1 : 0;
+  io.emit('answer_received', { playerId, answer });
+  res.status(200).json({ message: 'Answer received' });
 });
 
 // Socket.io
