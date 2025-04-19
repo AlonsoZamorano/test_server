@@ -82,6 +82,8 @@ app.post('/category', (req, res) => {
   retoPlayer = null; // Reiniciamos el jugador de reto al seleccionar una categoría
   if (!category) return res.status(400).json({ error: 'Category is required' });
 
+  let randomPlayer = null; // Variable para almacenar el jugador aleatorio
+
   let questions = [];
   switch (category) {
     case 'cultura_chupistica':
@@ -91,7 +93,7 @@ app.post('/category', (req, res) => {
       questions = quien_sabe_mas_questions;
 
       const randomIndex = Math.floor(Math.random() * players.length);
-      const randomPlayer = players[randomIndex];
+      randomPlayer = players[randomIndex];
       break;
     case 'retos':
       questions = retos_questions;
