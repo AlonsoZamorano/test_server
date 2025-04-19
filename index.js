@@ -294,7 +294,7 @@ io.on('connection', (socket) => {
   });
 });
 
-app.get('/start', (req, res) => {
+app.post('/start', (req, res) => {
   io.emit('start_game');
   res.status(200).json({ message: 'Juego iniciado' });
 });
