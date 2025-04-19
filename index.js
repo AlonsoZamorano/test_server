@@ -113,6 +113,11 @@ app.post('/category', (req, res) => {
 
   if (category === 'quien_sabe_mas') {
     question.target = randomPlayer;
+  } else if (category === 'votacion') {
+    if (question.type === "players") {
+      // Entonces agregamos a los jugadores como opciones de votación
+      question.options = players.map(player => player.name);
+    }
   }
 
   currentQuestion = question;
