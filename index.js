@@ -83,6 +83,7 @@ let currentRound = {
 // 5. Al final de cada pregunta se envía el resultado a todos los jugadores y se actualiza la puntuación de cada jugador.
 
 app.post('/api/restart', (req, res) => {
+  console.log('Reiniciando juego...');
   currentRound = {
     question: null,
     type: null,
@@ -104,8 +105,7 @@ app.get('/api/mothers', (req, res) => {
 
 app.post('/api/players', (req, res) => {
   const { name, id_mother } = req.body;
-  const mother = mothers.find(m => m.id === id_mother);
-  if (!mother) {
+  if (!id_mother) {
     // Entonces el jugador es mother, buscamos por nombre
     const mother = mothers.find(m => m.name === name);
     if (!mother) {
@@ -116,6 +116,8 @@ app.post('/api/players', (req, res) => {
     res.json({ message: 'Mother added', mother });
     return;
   }
+  
+  const mother = mothers.find(m => m.id === id_mother);
 
   const player = {
     id: Date.now() + Math.random(),	
