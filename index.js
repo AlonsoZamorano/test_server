@@ -267,10 +267,7 @@ function evaluatePercentageRound(motherId) {
 
   // Enviar resultados
   io.emit('round_result', {
-    type: 'percentage',
-    motherId,
-    motherValue,
-    results
+    mothers
   });
 
   // Limpiar respuestas
@@ -311,10 +308,7 @@ function evaluateTextRound(motherId) {
   }
 
   io.emit('round_result', {
-    type: 'text',
-    motherId,
-    motherAnswer,
-    results
+    mothers
   });
 
   currentRound.answers = {};
@@ -352,10 +346,7 @@ function evaluateChoiceRound(motherId) {
   }
 
   io.emit('round_result', {
-    type: 'choice',
-    motherId,
-    motherChoice,
-    results
+    mothers
   });
 
   currentRound.answers = {};
@@ -398,10 +389,7 @@ function evaluateOrderRound(motherId) {
   }
 
   io.emit('round_result', {
-    type: 'order',
-    motherId,
-    correctOrder,
-    results
+    mothers
   });
 
   currentRound.answers = {};
