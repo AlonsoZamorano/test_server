@@ -105,9 +105,15 @@ app.post('/api/players', (req, res) => {
 });
 
 app.post('/api/start', (req, res) => {
-  const types = Object.keys(questions);
-  const randomType = types[Math.floor(Math.random() * types.length)];
-  const questionList = questions[randomType];
+  io.emit('start_game'); // Enviar a todos los jugadores
+  res.json({ message: 'Juego iniciado' });
+}
+);
+
+app.post('/api/category', (req, res) => {
+  console.log('Categoría seleccionada:', req.body);
+  const { category } = req.body;
+  const questionList = questions[category];
   const randomQuestion = questionList[Math.floor(Math.random() * questionList.length)];
 
   let currentQuestion = {
