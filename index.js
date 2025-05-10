@@ -99,6 +99,8 @@ app.post('/api/players', (req, res) => {
 
   mother.team.push(player);
 
+  io.emit('player_joined', player); // Enviar a todos los jugadores
+
   res.json({ message: 'Player added', player });
 });
 
