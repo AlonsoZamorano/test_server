@@ -114,7 +114,9 @@ app.post('/api/players', (req, res) => {
     }
     mother.socketId = req.body.socketId;
 
-    res.json({ message: 'Mother added', mother });
+    io.emit('teams', mothers); // Enviar a todos los jugadores
+
+    res.json({ message: 'Mother added', player: mother });
     return;
   }
   
