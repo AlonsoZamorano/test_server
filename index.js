@@ -178,38 +178,27 @@ io.on('connection', (socket) => {
       currentRound.answers[playerId].value = value.trim().toLowerCase();
     }
 
-    if (currentRound.type === 'percentage') {
+    // Debemos comprobar que todos los jugadores en la partida respondieron (incluyendo la madre). Comparamos la cantidad de respuestas de la ronda con la cantidad de jugadores almacenados en la partida.
+    // Para esto revisamos en mothers si el socketId no es null y sumamos 1, luego sumamos la cantidad de jugadores en todos los equipos donde el socketId no es null.
+    const totalPlayers = mothers.reduce((acc, mother) => {
+      if (mother.socketId) {
+        acc += 1;
+      }
+      acc += mother.team.filter(player => player.socketId).length;
+      return acc;
+    }, 0);
+    const totalAnswers = Object.keys(currentRound.answers).length;
+
+    if (totalAnswers === totalPlayers) {
+      console.log('Todos los jugadores respondieron');
       // Si todos en ese equipo (incluyendo la madre) respondieron, evaluamos
-      const mother = mothers.find(m => m.id === motherId);
-      const totalTeamSize = mother.team.length + 1; // +1 por la madre
-      const teamAnswers = Object.values(currentRound.answers).filter(a => a.motherId === motherId);
-
-      if (teamAnswers.length === totalTeamSize) {
+      if (currentRound.type === 'percentage') {
         evaluatePercentageRound(motherId);
-      }
-    } else if (currentRound.type === 'text') {
-        // Comprobar si todos del equipo han respondido
-      const mother = mothers.find(m => m.id === motherId);
-      const totalTeamSize = mother.team.length + 1;
-      const teamAnswers = Object.values(currentRound.answers).filter(a => a.motherId === motherId);
-
-      if (teamAnswers.length === totalTeamSize) {
+      } else if (currentRound.type === 'text') {
         evaluateTextRound(motherId);
-      }
-    } else if (currentRound.type === 'choice') {
-      const mother = mothers.find(m => m.id === motherId);
-      const totalTeamSize = mother.team.length + 1; // +1 por la madre
-      const teamAnswers = Object.values(currentRound.answers).filter(a => a.motherId === motherId);
-
-      if (teamAnswers.length === totalTeamSize) {
+      } else if (currentRound.type === 'choice') {
         evaluateChoiceRound(motherId);
-      }
-    } else if (currentRound.type === 'order') {
-      const mother = mothers.find(m => m.id === motherId);
-      const totalTeamSize = mother.team.length + 1;
-      const teamAnswers = Object.values(currentRound.answers).filter(a => a.motherId === motherId);
-
-      if (teamAnswers.length === totalTeamSize) {
+      } else if (currentRound.type === 'order') {
         evaluateOrderRound(motherId);
       }
     }
