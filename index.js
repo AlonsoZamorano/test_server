@@ -50,13 +50,12 @@ let mothers = [
 
 const percentageQuestions = JSON.parse(fs.readFileSync('./questions/percentage.json', 'utf-8'));
 const textQuestions = JSON.parse(fs.readFileSync('./questions/text.json', 'utf-8'));
-// const textChoiceQuestions = JSON.parse(fs.readFileSync('./questions/text_choice.json', 'utf-8'));
 const choiceQuestions = JSON.parse(fs.readFileSync('./questions/choice.json', 'utf-8'));
 const orderQuestions = JSON.parse(fs.readFileSync('./questions/order.json', 'utf-8'));
+
 const questions = {
   percentage: percentageQuestions,
   text: textQuestions,
-  // text_choice: textChoiceQuestions,
   choice: choiceQuestions,
   order: orderQuestions
 };
@@ -65,7 +64,6 @@ let currentRound = {
   question: null,
   type: null,
   answers: {}, // clave: playerId, valor: número (slider)
-  awaitingMotherChoice: null // motherId si estamos esperando la elección del jefe
 };
 
 // Endpoints
@@ -100,6 +98,8 @@ app.post('/api/players', (req, res) => {
   };
 
   mother.team.push(player);
+
+  res.json({ message: 'Player added', player });
 });
 
 app.post('/api/start', (req, res) => {
