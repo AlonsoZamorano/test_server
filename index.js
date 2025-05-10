@@ -50,13 +50,13 @@ let mothers = [
 
 const percentageQuestions = JSON.parse(fs.readFileSync('./questions/percentage.json', 'utf-8'));
 const textQuestions = JSON.parse(fs.readFileSync('./questions/text.json', 'utf-8'));
-const textChoiceQuestions = JSON.parse(fs.readFileSync('./questions/text_choice.json', 'utf-8'));
+// const textChoiceQuestions = JSON.parse(fs.readFileSync('./questions/text_choice.json', 'utf-8'));
 const choiceQuestions = JSON.parse(fs.readFileSync('./questions/choice.json', 'utf-8'));
 const orderQuestions = JSON.parse(fs.readFileSync('./questions/order.json', 'utf-8'));
 const questions = {
   percentage: percentageQuestions,
   text: textQuestions,
-  text_choice: textChoiceQuestions,
+  // text_choice: textChoiceQuestions,
   choice: choiceQuestions,
   order: orderQuestions
 };
