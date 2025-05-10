@@ -90,9 +90,8 @@ app.post('/api/restart', (req, res) => {
   };
 
   mothers.forEach(mother => {
-    mother.team.forEach(player => {
-      player.score = 0;
-    });
+    mother.team = [];
+    mother.socketId = null;
   });
 
   res.json({ message: 'Juego reiniciado' });
