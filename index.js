@@ -185,7 +185,7 @@ io.on('connection', (socket) => {
         acc += 1;
       }
       acc += mother.team.length;
-      
+
       return acc;
     }, 0);
     const totalAnswers = Object.keys(currentRound.answers).length;
@@ -196,14 +196,39 @@ io.on('connection', (socket) => {
       console.log('Todos los jugadores respondieron');
       // Si todos en ese equipo (incluyendo la madre) respondieron, evaluamos
       if (currentRound.type === 'percentage') {
-        evaluatePercentageRound(motherId);
+        mothers.forEach(mother => {
+          if (mother.socketId) {
+            evaluatePercentageRound(mother.id);
+          }
+        });
       } else if (currentRound.type === 'text') {
-        evaluateTextRound(motherId);
+        mothers.forEach(mother => {
+          if (mother.socketId) {
+            evaluateTextRound(mother.id);
+          }
+        });
       } else if (currentRound.type === 'choice') {
-        evaluateChoiceRound(motherId);
+        mothers.forEach(mother => {
+          if (mother.socketId) {
+            evaluateChoiceRound(mother.id);
+          }
+        });
       } else if (currentRound.type === 'order') {
-        evaluateOrderRound(motherId);
+        mothers.forEach(mother => {
+          if (mother.socketId) {
+            evaluateOrderRound(mother.id);
+          }
+        });
       }
+      
+      console.log('Resultados de la ronda:', mothers);
+      
+      io.emit('round_result', {
+        mothers
+      });
+
+      // Limpiar respuestas
+      currentRound.answers = {};
     }
   });
 
@@ -261,14 +286,6 @@ function evaluatePercentageRound(motherId) {
   if (winner) {
     winner.score = (winner.score || 0) + 1;
   }
-
-  // Enviar resultados
-  io.emit('round_result', {
-    mothers
-  });
-
-  // Limpiar respuestas
-  currentRound.answers = {};
 }
 
 function evaluateTextRound(motherId) {
@@ -281,7 +298,6 @@ function evaluateTextRound(motherId) {
   const motherAnswer = motherEntry[1].value;
 
   const mother = mothers.find(m => m.id === motherId);
-  const results = [];
 
   for (const [playerId, answer] of teamAnswers) {
     if (answer.isMother) continue;
@@ -294,21 +310,7 @@ function evaluateTextRound(motherId) {
     if (match) {
       player.score = (player.score || 0) + 1;
     }
-
-    results.push({
-      playerId,
-      name: player.name,
-      answer: answer.value,
-      motherAnswer,
-      correct: match
-    });
   }
-
-  io.emit('round_result', {
-    mothers
-  });
-
-  currentRound.answers = {};
 }
 
 function evaluateChoiceRound(motherId) {
@@ -321,7 +323,6 @@ function evaluateChoiceRound(motherId) {
   const motherChoice = motherAnswer[1].value;
 
   const mother = mothers.find(m => m.id === motherId);
-  const results = [];
 
   for (const [playerId, answer] of teamAnswers) {
     if (answer.isMother) continue;
@@ -333,20 +334,7 @@ function evaluateChoiceRound(motherId) {
     if (correct) {
       player.score = (player.score || 0) + 1;
     }
-
-    results.push({
-      playerId,
-      name: player.name,
-      answer: answer.value,
-      correct
-    });
   }
-
-  io.emit('round_result', {
-    mothers
-  });
-
-  currentRound.answers = {};
 }
 
 function arraysEqual(a, b) {
@@ -364,7 +352,6 @@ function evaluateOrderRound(motherId) {
   const correctOrder = motherEntry[1].value;
 
   const mother = mothers.find(m => m.id === motherId);
-  const results = [];
 
   for (const [playerId, answer] of teamAnswers) {
     if (answer.isMother) continue;
@@ -376,18 +363,5 @@ function evaluateOrderRound(motherId) {
     if (correct) {
       player.score = (player.score || 0) + 1;
     }
-
-    results.push({
-      playerId,
-      name: player.name,
-      answer: answer.value,
-      correct
-    });
   }
-
-  io.emit('round_result', {
-    mothers
-  });
-
-  currentRound.answers = {};
 }
