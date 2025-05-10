@@ -79,6 +79,23 @@ let currentRound = {
 // 4.5. Pregunta de orden: Se envía una pregunta y varias opciones. Los jugadores y el jefe deben ordenar las opciones. Los jugadores que respondan igual que el jefe ganan un punto.
 // 5. Al final de cada pregunta se envía el resultado a todos los jugadores y se actualiza la puntuación de cada jugador.
 
+app.post('/api/restart', (req, res) => {
+  currentRound = {
+    question: null,
+    type: null,
+    answers: {}, // clave: playerId, valor: número (slider)
+  };
+
+  mothers.forEach(mother => {
+    mother.team.forEach(player => {
+      player.score = 0;
+    });
+  });
+
+  res.json({ message: 'Juego reiniciado' });
+});
+
+
 app.get('/api/mothers', (req, res) => {
   res.json(mothers);
 });
@@ -118,7 +135,7 @@ app.post('/api/category', (req, res) => {
 
   let currentQuestion = {
     ...randomQuestion,
-    type: randomType
+    type: category
   };
 
   io.emit('new_question', currentQuestion); // Enviar a todos los jugadores
