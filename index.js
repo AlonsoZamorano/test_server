@@ -179,12 +179,13 @@ io.on('connection', (socket) => {
     }
 
     // Debemos comprobar que todos los jugadores en la partida respondieron (incluyendo la madre). Comparamos la cantidad de respuestas de la ronda con la cantidad de jugadores almacenados en la partida.
-    // Para esto revisamos en mothers si el socketId no es null y sumamos 1, luego sumamos la cantidad de jugadores en todos los equipos donde el socketId no es null.
+    // Para esto revisamos en mothers si el socketId no es null y sumamos 1, luego sumamos la cantidad de jugadores en todos los equipos donde el socketId de la madre no es null.
     const totalPlayers = mothers.reduce((acc, mother) => {
       if (mother.socketId) {
         acc += 1;
       }
-      acc += mother.team.filter(player => player.socketId).length;
+      acc += mother.team.length;
+      
       return acc;
     }, 0);
     const totalAnswers = Object.keys(currentRound.answers).length;
