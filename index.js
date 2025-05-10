@@ -105,6 +105,7 @@ app.get('/api/mothers', (req, res) => {
 
 app.post('/api/players', (req, res) => {
   const { name, id_mother } = req.body;
+  console.log('Unirse como jugador:', req.body);
   if (!id_mother) {
     // Entonces el jugador es mother, buscamos por nombre
     const mother = mothers.find(m => m.name === name);
