@@ -291,11 +291,15 @@ function evaluatePercentageRound(motherId) {
 function evaluateTextRound(motherId) {
   const teamAnswers = Object.entries(currentRound.answers)
     .filter(([_, a]) => a.motherId === motherId);
+  
+  console.log('teamAnswers', teamAnswers);
 
   const motherEntry = teamAnswers.find(([_, a]) => a.isMother);
   if (!motherEntry) return;
 
   const motherAnswer = motherEntry[1].value;
+
+  console.log('motherAnswer', motherAnswer);
 
   const mother = mothers.find(m => m.id === motherId);
 
@@ -305,11 +309,15 @@ function evaluateTextRound(motherId) {
     const player = mother.team.find(p => p.id == playerId);
     if (!player) continue;
 
+    console.log('playerId', playerId);
+
     const match = answer.value === motherAnswer;
+    console.log('match', match);
 
     if (match) {
       player.score = (player.score || 0) + 1;
     }
+    console.log('player.score', player.score);
   }
 }
 
