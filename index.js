@@ -112,7 +112,7 @@ app.post('/api/players', (req, res) => {
     if (!mother) {
       return res.status(400).json({ message: 'Mother no encontrada' });
     }
-    mother.socketId = req.body.socketId;
+    mother.socketId = true;
 
     io.emit('teams', mothers); // Enviar a todos los jugadores
 
