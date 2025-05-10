@@ -153,6 +153,10 @@ app.post('/api/category', (req, res) => {
     type: category
   };
 
+  // Guardamos los datos de la ronda actual
+  currentRound.question = currentQuestion.question;
+  currentRound.type = currentQuestion.type;
+
   io.emit('new_question', currentQuestion); // Enviar a todos los jugadores
   res.json({ message: 'Juego iniciado', question: currentQuestion });
 });
