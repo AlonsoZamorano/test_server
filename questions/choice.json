@@ -1,0 +1,11 @@
+[
+  {
+    "question": "¿Cual es tu mascota favorita?",
+    "options": [
+      "Perro",
+      "Gato",
+      "Tortuga",
+      "Marmota"
+    ]
+  }
+]
