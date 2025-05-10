@@ -164,6 +164,7 @@ io.on('connection', (socket) => {
 
   socket.on('answer', (data) => {
     const { playerId, value, isMother, motherId } = data;
+    console.log('Respuesta recibida:', data);
 
     // Guardamos la respuesta
     currentRound.answers[playerId] = {
