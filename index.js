@@ -30,19 +30,22 @@ let mothers = [
     id: 1,
     name: 'Raquel',
     type: 'mother',
-    team: []
+    team: [],
+    socketId: null
   },
   {
     id: 2,
     name: 'Caro',
     type: 'mother',
-    team: []
+    team: [],
+    socketId: null
   },
   {
     id: 3,
     name: 'Dany',
     type: 'mother',
-    team: []
+    team: [],
+    socketId: null
   }
 ];
 
@@ -104,7 +107,15 @@ app.post('/api/players', (req, res) => {
   const { name, id_mother } = req.body;
   const mother = mothers.find(m => m.id === id_mother);
   if (!mother) {
-    return res.status(404).json({ message: 'Mother not found' });
+    // Entonces el jugador es mother, buscamos por nombre
+    const mother = mothers.find(m => m.name === name);
+    if (!mother) {
+      return res.status(400).json({ message: 'Mother no encontrada' });
+    }
+    mother.socketId = req.body.socketId;
+
+    res.json({ message: 'Mother added', mother });
+    return;
   }
 
   const player = {
@@ -116,7 +127,7 @@ app.post('/api/players', (req, res) => {
 
   mother.team.push(player);
 
-  io.emit('player_joined', player); // Enviar a todos los jugadores
+  io.emit('teams', mothers); // Enviar a todos los jugadores
 
   res.json({ message: 'Player added', player });
 });
