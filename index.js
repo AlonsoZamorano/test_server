@@ -189,6 +189,8 @@ io.on('connection', (socket) => {
     }, 0);
     const totalAnswers = Object.keys(currentRound.answers).length;
 
+    console.log('Total de jugadores:', totalPlayers);
+    console.log('Total de respuestas:', totalAnswers);
     if (totalAnswers === totalPlayers) {
       console.log('Todos los jugadores respondieron');
       // Si todos en ese equipo (incluyendo la madre) respondieron, evaluamos
