@@ -1,5 +1,38 @@
 [
   {
     "question": "¿Comida favorita de tu mamá?"
+  },
+  {
+    "question": "Palabra favorita de tu mamá"
+  },
+  {
+    "question": "Garabato favorito de tu mamá"
+  },
+  {
+    "question": "Hobby favorito de tu mamá"
+  },
+  {
+    "question": "Animal favorito de tu mamá"
+  },
+  {
+    "question": "Lugar favorito de tu mamá"
+  },
+  {
+    "question": "Comida que más odia tu mamá"
+  },
+  {
+    "question": "Garabato que más odia tu mamá"
+  },
+  {
+    "question": "Persona que más odia tu mamá"
+  },
+  {
+    "question": "Tienda favorita de tu mamá"
+  },
+  {
+    "question": "Marca favorita de tu mamá"
+  },
+  {
+    "question": "Receta clasica de tu mamá"
   }
 ]

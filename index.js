@@ -95,6 +95,18 @@ app.post('/api/restart', (req, res) => {
     mother.socketId = null;
   });
 
+  percentageQuestions = JSON.parse(fs.readFileSync('./questions/percentage.json', 'utf-8'));
+  textQuestions = JSON.parse(fs.readFileSync('./questions/text.json', 'utf-8'));
+  choiceQuestions = JSON.parse(fs.readFileSync('./questions/choice.json', 'utf-8'));
+  orderQuestions = JSON.parse(fs.readFileSync('./questions/order.json', 'utf-8'));
+
+  questions = {
+    percentage: percentageQuestions,
+    text: textQuestions,
+    choice: choiceQuestions,
+    order: orderQuestions
+  };
+
   res.json({ message: 'Juego reiniciado' });
 });
 
@@ -147,6 +159,11 @@ app.post('/api/category', (req, res) => {
   const { category } = req.body;
   const questionList = questions[category];
   const randomQuestion = questionList[Math.floor(Math.random() * questionList.length)];
+  // Eliminamos la pregunta de la lista para que no se repita
+  const questionIndex = questionList.indexOf(randomQuestion);
+  if (questionIndex > -1) {
+    questionList.splice(questionIndex, 1);
+  }
 
   let currentQuestion = {
     ...randomQuestion,

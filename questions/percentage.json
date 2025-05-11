@@ -3,5 +3,45 @@
     "question": "¿Que tan estudiosa es tu mamá?",
     "left": "Andrés López (nada)",
     "right": "Ignacio López (se lee hasta las instrucciones del shampoo)"
+  },
+  {
+    "question": "¿Que tan puntual se considera tu mamá?",
+    "left": "Siempre llega tarde",
+    "right": "Siempre llega temprano"
+  },
+  {
+    "question": "¿Que tan buena es tu mamá para cocinar?",
+    "left": "Depende de la thermomix",
+    "right": "Es chef"
+  },
+  {
+    "question": "¿Que tan deportista es tu mamá?",
+    "left": "Levantarse de la cama es un deporte",
+    "right": "Es atleta olímpica"
+  },
+  {
+    "question": "¿Que tan buena es tu mamá para bailar?",
+    "left": "No sabe bailar",
+    "right": "Es bailarina profesional"
+  },
+  {
+    "question": "¿Que tan buena es tu mamá para cantar?",
+    "left": "No sabe cantar",
+    "right": "Es cantante profesional"
+  },
+  {
+    "question": "¿Que tan buena es tu mamá para hacer chistes?",
+    "left": "No sabe contar chistes",
+    "right": "Es comediante profesional"
+  },
+  {
+    "question": "¿Como se lleva tu mamá con sus yernas o yernos?",
+    "left": "Ni los mira",
+    "right": "Los ama y los sigue a todos por Instagram"
+  },
+  {
+    "question": "¿Que tan dormilona es tu mamá?",
+    "left": "No duerme",
+    "right": "Es mitad gato"
   }
 ]

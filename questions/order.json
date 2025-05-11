@@ -8,5 +8,75 @@
       "Asado del 11 de septiembre Jose Mario",
       "Cumpleaños Chancho Malo"
     ]
+  },
+  {
+    "question": "Mejores tragos según tu mamá",
+    "options": [
+      "Pisco Sour",
+      "Piscola",
+      "Piña Colada",
+      "Aperol",
+      "Ramazzotti"
+    ]
+  },
+  {
+    "question": "Mejor lugar para ir de vacaciones según tu mamá",
+    "options": [
+      "Maitencillo",
+      "Brasil",
+      "USA",
+      "Viña del Mar",
+      "Padre Hurtado"
+    ]
+  },
+  {
+    "question": "Comidas favoritas según tu mamá",
+    "options": [
+      "Pizza",
+      "Sushi",
+      "Asado",
+      "Comida China",
+      "Comida Peruana"
+    ]
+  },
+  {
+    "question": "Personas más fomes según tu mamá",
+    "options": [
+      "Tio Miguel",
+      "Tio Roberto",
+      "Tio Carlitos",
+      "Tio Mauri",
+      "Tio Cristian"
+    ]
+  },
+  {
+    "question": "Persona más boba según tu mamá",
+    "options": [
+      "Alonso",
+      "Anto",
+      "Tio Chispa",
+      "Basty",
+      "Tio Leo"
+    ]
+  },
+  {
+    "question": "Top peores deciciones según tu mamá",
+    "options": [
+      "Tia Marce siendo madrina de Alonso",
+      "Cambios de carrera de la Vale",
+      "Invitaciones al matrimonio de la Vale",
+      "Elección de amigos de la tia Marce",
+      "Zumba tia Poly"
+    ]
+  },
+  {
+    "question": "Personas mas atractivas según tu mamá",
+    "options": [
+      "Marc Anthony",
+      "Brad Pitt",
+      "Ricky Martin",
+      "Chayanne",
+      "Antonio Banderas"
+    ]
   }
 ]

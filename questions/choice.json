@@ -1,11 +1,60 @@
 [
   {
-    "question": "¿Cual es tu mascota favorita?",
+    "question": "¿Cual es la mascota favorita de tu mamá?",
     "options": [
       "Perro",
       "Gato",
       "Tortuga",
       "Marmota"
     ]
+  },
+  {
+    "question": "¿Cual es el color favorito de tu mamá?",
+    "options": [
+      "Rojo",
+      "Verde",
+      "Azul",
+      "Amarillo"
+    ]
+  },
+  {
+    "question": "Destino favorito de vacaciones de tu mamá",
+    "options": [
+      "Playa",
+      "Montaña",
+      "Campo",
+      "Ciudad"
+    ]
+  },
+  {
+    "question": "Genero de pelicula favorito de tu mamá",
+    "options": [
+      "Romance",
+      "Acción",
+      "Terror",
+      "Comedia",
+      "Aventura"
+    ]
+  },
+  {
+    "question": "¿Cual es el deporte favorito de tu mamá?",
+    "options": [
+      "Fútbol",
+      "Tenis",
+      "Natación",
+      "Ciclismo",
+      "Dormir"
+    ]
+  },
+  {
+    "question": "Si está preocupada, ¿con quien hablaría tu mamá?",
+    "options": [
+      "Hijos",
+      "Amigos",
+      "Mamá",
+      "Papá",
+      "Esposo"
+    ]
   }
+
 ]
