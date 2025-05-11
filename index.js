@@ -196,6 +196,9 @@ io.on('connection', (socket) => {
 
     console.log('Total de jugadores:', totalPlayers);
     console.log('Total de respuestas:', totalAnswers);
+    // obtener laststate de mothers
+    let lastStateMothers = JSON.parse(JSON.stringify(mothers)); // Copia profunda antes de evaluar
+
     if (totalAnswers === totalPlayers) {
       console.log('Todos los jugadores respondieron');
       // Si todos en ese equipo (incluyendo la madre) respondieron, evaluamos
@@ -228,7 +231,8 @@ io.on('connection', (socket) => {
       console.log('Resultados de la ronda:', mothers);
       
       io.emit('round_result', {
-        mothers
+        mothers,
+        winners: getWinners(lastStateMothers, mothers)
       });
 
       // Limpiar respuestas
@@ -248,7 +252,28 @@ server.listen(PORT, '0.0.0.0', () => {
 });
 
 
+function getWinners(lastStateMothers, currentStateMothers) {
+  // Comparamos el estado anterior con el actual y obtenemos los ganadores, estos serán aquellos jugadores que tengan un score mayor al anterior.
+  const winners = [];
+  for (const mother of lastStateMothers) {
+    const currentMother = currentStateMothers.find(m => m.id === mother.id);
+    if (!currentMother) continue;
 
+    for (const player of mother.team) {
+      const currentPlayer = currentMother.team.find(p => p.id === player.id);
+      if (!currentPlayer) continue;
+
+      if (currentPlayer.score > player.score) {
+        winners.push({
+          playerId: player.id,
+          name: player.name,
+          score: currentPlayer.score - player.score
+        });
+      }
+    }
+  }
+  return winners;
+}
 
 
 function evaluatePercentageRound(motherId) {
