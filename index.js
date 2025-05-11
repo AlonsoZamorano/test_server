@@ -115,6 +115,16 @@ app.get('/api/mothers', (req, res) => {
   res.json(mothers);
 });
 
+app.get('/api/question', (req, res) => {
+  let question = {
+    question: currentRound.question,
+    type: currentRound.type
+  }
+
+  res.json(question);
+}
+);
+
 app.post('/api/players', (req, res) => {
   const { name, id_mother } = req.body;
   console.log('Unirse como jugador:', req.body);
