@@ -163,6 +163,8 @@ app.post('/api/category', (req, res) => {
   const questionIndex = questionList.indexOf(randomQuestion);
   if (questionIndex > -1) {
     questionList.splice(questionIndex, 1);
+
+    questions[category] = questionList;
   }
 
   let currentQuestion = {
